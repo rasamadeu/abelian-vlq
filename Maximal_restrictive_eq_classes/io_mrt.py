@@ -243,6 +243,39 @@ def pretty_print_set_mrt_after(filename_input, filename_output):
     return
 
 
+#####################################################
+#
+#   AFTER SYMMETRY REALISATION
+#
+#####################################################
+
+
+# This function stores the results from texture_zeros.py in a file
+def print_mrt_after_symmetry(set_mrt,
+                             filename, n_u, n_d):
+
+    np.set_printoptions(threshold=np.inf)
+    np.set_printoptions(linewidth=np.inf)
+    with open(filename, "w") as f:
+        f.write(f"{n_u} {n_d}\n")
+        for mrt_n_zeros_u in set_mrt:
+            f.write(f"{mrt_n_zeros_u[0]} {mrt_n_zeros_u[1]}\n")
+            for pair in mrt_n_zeros_u[2]:
+                for i in pair[0][0]:
+                    for j in i:
+                        f.write(f"{int(j)} ")
+
+                for i in pair[0][1]:
+                    for j in i:
+                        f.write(f"{int(j)} ")
+                f.write("\n")
+                for decomp in pair[1]:
+                    print("aeo")
+                    # print decomp
+
+    return
+
+
 def print_error_msg():
 
     print("ERROR: invalid input")
