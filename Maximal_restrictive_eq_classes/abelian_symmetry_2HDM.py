@@ -229,12 +229,47 @@ def check_pair_texture_zeros(pair, system, n_u, n_d):
                         non_zeros_system += 1
                 if non_zeros_system == n_non_zeros:
                     null_space /= null_space[0]
-                    possible_decompositions.append(null_space)
+                    null_space = np.transpose(null_space)[0]
+                    n = 11 + 2 * (n_u + n_d)
+                    output = np.zeros(n)
+                    output[1] = null_space[0]
+                    for i in range(n - 3):
+                        output[3 + i] = np.round(null_space[i + 1])
+                    possible_decompositions.append(output)
 
     if possible_decompositions == []:
         return False, possible_decompositions
     else:
         return True, possible_decompositions
+
+
+# Constructs mass textures corresponding to a given set of field charges
+def construct_texture_from_symmetry(charges, n_u, n_d):
+
+    m_u = np.zeros([3 + n_u, 3 + n_u])
+    m_d = np.zeros([3 + n_d, 3 + n_d])
+
+    for i in range(2):
+        for j in range(3):
+            for k in range(3 + n_u):
+                if not charges[i] + charges[2 + j] - charges[5 + k]:
+                    m_u[j, k] = i + 1
+
+            for k in range(3 + n_d):
+                if not -charges[i] + charges[2 + j] - charges[8 + n_u + k]:
+                    m_d[j, k] = i + 1
+
+    for i in range(n_u):
+        for j in range(3 + n_u):
+            if not -charges[5 + j] + charges[11 + n_u + n_d + i]:
+                m_u[3 + i, j] = 3
+
+    for i in range(n_d):
+        for j in range(3 + n_d):
+            if not -charges[5 + n_u + j] + charges[11 + 2 * n_u + n_d + i]:
+                m_d[3 + i, j] = 3
+
+    return m_u, m_d
 
 
 def main():
@@ -243,6 +278,7 @@ def main():
     filename = args[0]
     n_u, n_d, set_mrt = io_mrt.read_mrt_after_min(filename)
     system = define_system_eqs(n_u, n_d)
+    print(system)
 
     for textures in set_mrt:
         length = len(textures[2])
