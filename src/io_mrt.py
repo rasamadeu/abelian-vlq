@@ -270,6 +270,41 @@ def print_mrt_after_symmetry(set_mrt,
     return
 
 
+# This function stores the results from texture_zeros.py in a file
+def read_mrt_after_symmetry(filename):
+
+    set_charges = []
+    with open(filename, "r") as f:
+        line = f.readline()
+        n = line.split(" ")
+        n_u = int(n[0]) + 3
+        n_d = int(n[1]) + 3
+
+        i = 0
+        while True:
+            line = f.readline()
+            line_split = line.split(" ")
+
+            if line == "":
+                return n_u - 3, n_d - 3, set_charges
+            else:
+                while len(line_split) > 2:
+                    line = []
+                    for i in line_split[:-1]:
+                        line.append(float(i))
+                    charges.append(line)
+                    line = f.readline()
+                    line_split = line.split(" ")
+
+                if len(line_split) == 2:
+                    n_zeros_u = int(line_split[0])
+                    n_zeros_d = int(line_split[1])
+                    set_charges.append([n_zeros_u, n_zeros_d, []])
+                else:
+                    set_charges[-1][2].append(charges)
+                charges = []
+
+
 def print_error_msg():
 
     print("ERROR: invalid input")

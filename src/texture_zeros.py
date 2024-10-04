@@ -9,10 +9,10 @@ from itertools import combinations, permutations
 from scipy.special import comb
 import time
 import sys
+import pdb
 
 import extract_obs as ext
 import io_mrt
-# import pdb
 
 # This function returns the texture zeros of square matrices of
 # dimension dim with n_zeros. We write the positions of elements
@@ -200,7 +200,7 @@ def pair_compatible_with_data(texture_u, massless_u, texture_d, massless_d):
             continue
 
         # NOTE: define extra compatibility criteria below
-        # Below, I demand that at least one VLQ must be coupled
+        # I demand that at least one VLQ must be coupled
         # to the SM quarks
         if dim_u * dim_d != 9:
             size = np.shape(V)

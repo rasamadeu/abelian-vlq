@@ -246,8 +246,8 @@ def check_pair_texture_zeros(pair, system, n_u, n_d):
 # Constructs mass textures corresponding to a given set of field charges
 def construct_texture_from_symmetry(charges, n_u, n_d):
 
-    m_u = np.zeros([3 + n_u, 3 + n_u])
-    m_d = np.zeros([3 + n_d, 3 + n_d])
+    m_u = np.zeros([3 + n_u, 3 + n_u], dtype='uint8')
+    m_d = np.zeros([3 + n_d, 3 + n_d], dtype='uint8')
 
     for i in range(2):
         for j in range(3):
@@ -278,7 +278,6 @@ def main():
     filename = args[0]
     n_u, n_d, set_mrt = io_mrt.read_mrt_after_min(filename)
     system = define_system_eqs(n_u, n_d)
-    print(system)
 
     for textures in set_mrt:
         length = len(textures[2])
