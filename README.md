@@ -18,9 +18,9 @@ sudo apt install python3
 
 The project is also dependent on the following open source Python packages, which are very useful for scientific computing:
 
-- **NumPy** - standard library used for scientific computing, providing a high level of abstraction with well-optimized C code. [installation link](https://numpy.org/install/)
-- **Numba** - open source Python just-in-time (JIT) compiler [installation link](https://numba.readthedocs.io/en/stable/user/installing.html)
-- **iMinuit** - a Python interface for the **Minuit2** C++ library maintained by CERN'S ROOT team. [installation link](https://scikit-hep.org/iminuit/install.html)
+- [**NumPy**](https://numpy.org/install/) - standard library used for scientific computing, providing a high level of abstraction with well-optimized C code
+- [**Numba**](https://numba.readthedocs.io/en/stable/user/installing.html) - open source Python just-in-time (JIT) compiler
+- [**iMinuit**](https://scikit-hep.org/iminuit/install.html) - a Python interface for the **Minuit2** C++ library maintained by CERN'S ROOT team.
 
 ## Usage
 
