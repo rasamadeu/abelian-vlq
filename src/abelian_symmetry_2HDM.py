@@ -10,6 +10,8 @@ import pdb
 import random
 import io_mrt
 
+FILENAME_OUTPUT = ""
+
 
 # This function returns a list non_zero_entries which contains the positions
 # of the non zero entries of the pair of texture zeros.
@@ -291,7 +293,11 @@ def main():
             else:
                 textures[2].pop(i)
 
-    filename = "output/test_symmetry"
+    if FILENAME_OUTPUT:
+        filename = FILENAME_OUTPUT
+    else:
+        filename = args[0].replace("minimisation", "symmetry")
+
     io_mrt.print_mrt_after_symmetry(
         set_mrt, filename, n_u, n_d)
 

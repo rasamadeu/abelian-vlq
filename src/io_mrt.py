@@ -21,7 +21,7 @@ def print_mrt_before_min(set_mrt,
     with open(filename, "w") as f:
         f.write(f"{n_u} {n_d}\n")
         for mrt_n_zeros_u in set_mrt:
-            n_zeros = mrt_n_zeros_u[0].split(" ")
+            n_zeros = mrt_n_zeros_u[0].split("_")
             f.write(f"{n_zeros[0]} {n_zeros[1]}\n")
             for pair in mrt_n_zeros_u[1]:
                 for i in pair[0]:

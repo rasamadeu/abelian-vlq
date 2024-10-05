@@ -479,7 +479,7 @@ def main():
     massless_d = 0
     filename = f"output/{n_u}_up_{n_d}_down_VLQ_MRT_before_minimisation.dat"
 
-    if (args_len == 4):
+    if (args_len >= 4):
 
         massless_u = int(args[2])
         massless_d = int(args[3])
@@ -491,7 +491,7 @@ def main():
             filename = filename[:-4] + \
                 f"_{massless_d}_massless_down" + filename[-4:]
 
-    else:
+    if (args_len == 5):
         filename = args[-1]
 
     set_maximally_restrictive_pairs = get_maximmaly_restrictive_pairs(n_u, n_d,

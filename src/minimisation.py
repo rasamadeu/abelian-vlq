@@ -33,12 +33,12 @@ import io_mrt
 
 # 4 mass ratios (u/t, c/t, d/b, s/b) + 9 CKM elements + UT gamma phase
 N_OBSERVABLES = 14
-N_TRIES = 20
+N_TRIES = 100
 MAX_CHI_SQUARE = 9
 
 VLQ_LOWER_BOUND = 1.4 * phys.TeV
 SIGMA_MASS_VLQ = 0.15 * phys.TeV
-FILENAME_OUTPUT = "output/test"
+FILENAME_OUTPUT = ""
 
 
 ##################################################################################################
@@ -286,8 +286,13 @@ def main():
     if set_mrt_after == []:
         print("NO PAIRS WERE FOUND!")
 
+    if FILENAME_OUTPUT:
+        filename = FILENAME_OUTPUT
+    else:
+        filename = args[0].replace("before", "after")
+
     io_mrt.print_mrt_after_min(
-        set_mrt_after, FILENAME_OUTPUT, n_u, n_d)
+        set_mrt_after, filename, n_u, n_d)
 
     end = time.time()
     print(f"TOTAL TIME = {int((float(end) - float(start)) / 60)} min ", end="")
