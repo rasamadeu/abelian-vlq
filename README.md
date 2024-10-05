@@ -42,7 +42,7 @@ The project is also dependent on the following open source Python packages, whic
 
 ## Usage
 
-The repository contains a simple bash script that runs the pipeline explained in [Introduction]{# Introduction}.
+The repository contains a simple bash script that runs the pipeline explained in [Introduction](#Introduction).
 To run it, you simply need to type
 
 `./abelian-vlq n_u n_d`
