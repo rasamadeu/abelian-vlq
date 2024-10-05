@@ -4,8 +4,8 @@ A Python codebase to explore two Higgs doublets models (2HDMs) extended with iso
 
 ## Introduction
 
-This project was developed during my master's thesis, where I address a recent result in the first row of the Cabibbo-Kobayashi-Maskawa (CKM) matrix which
-presents a deviation from the SM prediction of a unitary CKM. This result is known as the Cabibbo angle anomaly (CAA). 
+This project was developed during my master's thesis, where I address a recent result in the first row of the Cabibbo-Kobayashi-Maskawa (CKM) matrix. This
+result, known as the Cabibbo angle anomaly (CAA), presents a deviation from the SM prediction of a unitary CKM. 
 
 The CAA is analysed in the context of a SM extension with a single up isosinglet VLQ. To reduce the number of parameters in the 
 quark mass matrices, the maximally restrictive texture zero pairs (MRT) are determined. Maximally restrictive texture zero pairs are pairs of quark mass matrices
