@@ -94,6 +94,6 @@ with Abelian symmetries in the context of a 2HDM. It would be nice to allow for 
 
 ## To do
 
-- [] Improve `get_non_restrictive_texture_zeros()` to deal with textures of an arbitrary dimension
+- [x] Improve `get_non_restrictive_texture_zeros()` to deal with textures of an arbitrary dimension
 - [] Automate `minimisation.py` to deal with an arbitrary number of up and or down VLQs
 - [] Improve `abelian_symmetry_2HDM.py` to determine minimal NHDM that realizes a given MRT pair
