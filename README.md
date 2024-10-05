@@ -42,10 +42,11 @@ The project is also dependent on the following open source Python packages, whic
 
 ## Usage
 
+The repository contains a simple bash script that runs the pipeline explained in [Introduction]{# Introduction}.
 
 ## Issues
 
 Currently, the minimisation.py script must be manually updated to perform the minimisation step in the procedure pipeline. It would be useful to automate this step.
 
-Furthermore, this project is only prepared to deal with 2HDMs. However, there is no guarantee that for a particular set of values (n_u, n_d) the maximally-restrictive textures are realisable
+This project is only prepared to deal with 2HDMs. However, there is no guarantee that for a particular set of values $(n_u, n_d)$ the MRT are realisable
 with Abelian symmetries in the context of a 2HDM. It would be nice to allow for abelian_symmetry_2HDM.py to eventually determine the minimal NHDM that realizes a given texture.

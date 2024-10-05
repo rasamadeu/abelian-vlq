@@ -278,7 +278,8 @@ def main():
 
     args = sys.argv[1:]
     filename = args[0]
-    n_u, n_d, set_mrt = io_mrt.read_mrt_after_min(filename)
+    # n_u, n_d, set_mrt = io_mrt.read_mrt_after_min(filename)
+    n_u, n_d, set_mrt = io_mrt.read_mrt_before_min(filename)
     system = define_system_eqs(n_u, n_d)
 
     for textures in set_mrt:
