@@ -1,0 +1,139 @@
+NOTAS SOBRE ESCRITA:
+	- USAR INGLES UK
+	- ABREVIAR YUK. QUANDO ESCREVEMOS L_YUKAWA
+	- TER CUIDADO COM "-" EM ADJECTIVOS
+	- REGRA DE PARENTESES EM TEXTO - {...[...(...)...]...}
+	- COLOCAR TABELAS SEMPRE NO TOPO DA PAGINA SEGUINTE - USAR [t!]
+	- USAR , EM VEZ DE / PARA SUBSCRIPTS AND SUPERSCRIPTS
+	- "WE REFER THE READER TO" EM VEZ DE "WE REFER TO"
+	- ,i.e. texto em vez de ,i.e., texto
+	- Questao das referencias - Ir buscar as referencias do paper
+	- Utilizar parenteses em vez de barras quando escrevemos texto, e.g: up(down) em vez de up/down
+
+Revisao dos casos compativeis a 3 sigma:
+	- Os resultados obtidos previamente foram obtidos com a seguinte definicao de compatiblidade:
+		- theta_12, theta_13, theta_23 e Jarlskog nao nulos
+		- 9 CKM nao nulos + pelo menos 1 mixing com VLQ
+#########################################################################################################################
+	- Verificar se nao escaparam texture pairs em texture_zeros_v4.py:
+		- Relaxamos compatibilidade = 9 CKM nao nulos + pelo menos 1 mixing com VLQ:
+			- OBTEMOS CASOS COM 10 ENTRADAS REAIS NAO NULAS [(11,4)/(10,5)/(9,6) ZEROS] -> 64 casos
+				-> PENSO QUE NAO DA PARA IMPLEMENTAR PORQUE CONSEGUIMOS FAZER O REPHASE AWAY DAS FASES COMPLEXAS,
+				   E PRECISAMOS DE PELO MENOS UMA FASE COMPLEXA PARA CP VIOLATION
+			- Ao exigirmos 11 entradas nao nulas, obtemos +50 pares de texturas
+		- Temos de fazer a analise dos 50 pares extra para garantir que nenhum se encontra a "3 sigma":
+			- minuit 3 sigma -> Nenhum passou com 500 tries
+
+#########################################################################################################################
+
+To do:
+
+- Rever pheno:
+	- Verificar codigo de pheno:
+		- Funcoes seccao Observables - done
+		- Calculo Bounds - done
+		- Calculo NP contributions - done:
+			- No QCD corrections para u e c quarks nos K decays
+		- Verificar valores experimentais:
+			- Meson decays:
+				- K system:
+					- eps_k_exp - valor do paper diferente do PDG
+					- Nao sei onde foram buscar os erros dos etas
+				- D system:
+					- Bd - o valor é baseado em quê?
+					- eta_d - nao encontrei valor na referencia
+				- B system - done
+				- Kaon decays - Tenho de verificar valores de X_NL e Y_NL - Nao sei calcular strong coupling constant
+				- Eps'/Eps - Qual a energy scale para bag parameters? 
+		- Problemas com rephase invariance:
+			- eps_K
+			- eps ratio
+			- K decay 2
+
+- Calcular reconstrucao das matrizes de massa down - done
+- Calcular reconstrucao das matrizes de massa up - done
+
+- Refazer CAA plot com minimos do minuit para cada textura, com e sem pheno, e para cada quark desacoplado (12 casos):
+	- Alterar markers dos pontos - done
+	- Em vez de cores fazer labels com 5^quark_decoupled_i - done
+	- Colocar legenda - done 
+	- Tentar colocar subplots no grafico para ampliar zonas ilegiveis - done
+
+- Plot idea para seccao 4;
+	- Heat map do chi_square com phase vs modulo da entrada complexa - 
+		- Fazer plots em torno do minimo encontrado:
+			- d -> theta in [5.6; 6.1] / x2 in [93.44; 93.55] MeV
+			- s -> theta in [4.6701; 4.6703] / x2 in [0; 1] MeV
+			- b -> theta in [4; 6]     / x2 in [4.7; 4.85] MeV
+
+- Verificar se minimos encontrados obedecem a reconstrucao das massas:
+	- d with pheno - y
+	- d without pheno - y
+	- s with pheno - alguma tensao no modulo da entrada complexa
+	- s without pheno - alguma tensao no modulo da entrada complexa
+		- Talvez devido a pequena diferenca entre MASS_M e x2
+	- b with pheno - y
+	- b without pheno - y
+
+- Para cada subseccao da seccao 5:
+	- Desenhar diagramas de Feynman da pheno
+	- Explicar como se obtem as expressoes a partir dos diagramas
+	- Escrever as expressoes das bounds - done
+	- Tabelas com valores dos processos, bounds e erros - ASAP
+	- Heat map do chi_square com phase vs modulo da entrada complexa - 
+		- Fazer plots em torno do minimo encontrado:
+			- d -> theta in [5.6; 6.1] / x2 in [93.44; 93.55] MeV
+			- s -> theta in [4.6701; 4.6703] / x2 in [0; 1] MeV
+			- b -> theta in [4; 6]     / x2 in [4.7; 4.85] MeV
+
+- Colocar matrizes de massa do minuit no apendice - ASAP
+- Plot da seccao 4 com pheno e mesmos contours - ASAP
+- Plot da seccao 4 com pheno e contours com processos - ASAP
+- Scatter plots de processos vs M_VLQ
+- Apos acabar os pontos anteriores, fazer analise semelhante para 2HDM + 1 singleto complexo
+ 
+Estrutura:
+
+EW interactions and particle content
+EWSB and Fermion masses and mixing
+CAA
+
+SM extensions with isosinglets VLQ
+	Z and H FCNC - falta review
+	Mass vlq relation to non unitarity and FCNC
+
+Minimal implementation with Abelian symmetries
+	Maximally restrictive textures for quarks
+	Abelian symmetry realization of Maximally restrictive textures
+	
+Phenomenology
+	- Observables
+		- Expressoes
+		- Diagramas
+	- Results
+		- Tabela com valores das bounds e compatibilidade
+		- Grafico analogo ao da seccao 4 mas com pheno
+		- Grafico com pontos com e sem pheno
+	- Discussion
+
+Duvidas/Problemas:
+
+	- Explaining $b\to s\ell^+\ell^-$ and the Cabibbo angle anomaly with a vector triplet	
+
+Ler melhor antes de por nas referencias:
+
+	- The Fermi constant from muon decay versus electroweak fits and CKM unitarity
+	- β Decays as Sensitive Probes of Lepton Flavor Universality
+	- Constraints on the charged currents in general neutrino interactions with sterile neutrinos
+	- Global analysis of leptophilic Z’ bosons
+	- Right-handed neutrinos and the CDF II anomaly
+
+G_A measurements Belfatto:
+	- 1.27641(56)
+	- 1.2772(20)
+	- 1.2767(16)
+
+2D confidence levels:
+1 sigma - 2.3
+2 sigma - 6.18
+3 sigma - 11.83
