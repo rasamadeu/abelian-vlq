@@ -202,6 +202,7 @@ def pair_compatible_with_data(texture_u, massless_u, texture_d, massless_d):
         # NOTE: define extra compatibility criteria below
         # I demand that at least one VLQ must be coupled
         # to the SM quarks
+
         if dim_u * dim_d != 9:
             size = np.shape(V)
             mixing = 0
@@ -212,6 +213,8 @@ def pair_compatible_with_data(texture_u, massless_u, texture_d, massless_d):
 
             if mixing < 10:
                 continue
+
+        ##############################################
 
         compatible = True
         break

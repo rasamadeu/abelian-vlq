@@ -49,6 +49,18 @@ To run it, you simply need to type
 
 in the terminal, where n_u and n_d are the number of up and down isosinglet VLQs, respectively.
 
+> [!IMPORTANT]
+> Remember to modify minimisation.py to accomodate the case you wish to study, since this step must be manually defined.
+
+### Conditions
+
+There are several conditions which you can redefine in the scripts to accomodate your demands: 
+
+- texture_zeros.py
+    - In line 202 there is a block of code where extra compatibility criteria may be defined.
+    There, you find the criteria that at least 1 VLQ must be coupled to the SM quarks. Otherwise, the VLQ would be decoupled and the CKM matrix would remain unitary.
+- minimisation.py
+
 ## Issues
 
 Currently, the minimisation.py script must be manually updated to perform the minimisation step in the procedure pipeline. It would be useful to automate this step.
