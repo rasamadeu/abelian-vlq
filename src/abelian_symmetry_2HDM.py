@@ -159,6 +159,36 @@ def select_conditions_from_system(system, conditions_non_zero_entries, decomposi
     return pos
 
 
+# Constructs mass textures corresponding to a given set of field charges
+def construct_texture_from_symmetry(charges, n_u, n_d):
+
+    zero = 1e-10
+    m_u = np.zeros([3 + n_u, 3 + n_u], dtype='uint8')
+    m_d = np.zeros([3 + n_d, 3 + n_d], dtype='uint8')
+
+    for i in range(2):
+        for j in range(3):
+            for k in range(3 + n_u):
+                if abs(charges[i] + charges[2 + j] - charges[5 + k]) < zero:
+                    m_u[j, k] = i + 1
+
+            for k in range(3 + n_d):
+                if abs(-charges[i] + charges[2 + j] - charges[8 + n_u + k]) < zero:
+                    m_d[j, k] = i + 1
+
+    for i in range(n_u):
+        for j in range(3 + n_u):
+            if abs(-charges[5 + j] + charges[11 + n_u + n_d + i]) < zero:
+                m_u[3 + i, j] = 3
+
+    for i in range(n_d):
+        for j in range(3 + n_d):
+            if abs(-charges[8 + n_u + j] + charges[11 + 2 * n_u + n_d + i]) < zero:
+                m_d[3 + i, j] = 3
+
+    return m_u, m_d
+
+
 # This function checks if a given pair of texture zeros can be
 # imposed by an abelian symmetry with a 2HDM.
 def check_pair_texture_zeros(pair, system, n_u, n_d):
@@ -214,7 +244,7 @@ def check_pair_texture_zeros(pair, system, n_u, n_d):
 
             # Check if null space forbids remaining terms of the Lagrangian
             if np.any(null_space):
-                b = np.zeros((1, n_phases))
+                b = np.zeros(n_phases)
                 for k in range(np.shape(null_space)[1]):
                     b += random.uniform(1, 2) * null_space[:, k]
 
@@ -224,19 +254,19 @@ def check_pair_texture_zeros(pair, system, n_u, n_d):
                     if abs(elem) > scale:
                         scale = abs(elem)
 
-                b = system @ b.T
                 non_zeros_system = 0
-                for elem in b:
+                for elem in system @ b.T:
                     if abs(elem) <= scale * 1e2:
                         non_zeros_system += 1
                 if non_zeros_system == n_non_zeros:
-                    null_space /= null_space[0]
-                    null_space = np.transpose(null_space)[0]
+                    c = b / b[0]
                     n = 11 + 2 * (n_u + n_d)
                     output = np.zeros(n)
-                    output[1] = null_space[0]
+                    output[1] = c[0]
                     for i in range(n - 3):
-                        output[3 + i] = np.round(null_space[i + 1])
+                        output[3 + i] = np.around(c[i + 1], 2)
+                    # elems = construct_texture_from_symmetry(output, n_u, n_d)
+                    # print(test(pair, elems))
                     possible_decompositions.append(output)
 
     if possible_decompositions == []:
@@ -245,41 +275,22 @@ def check_pair_texture_zeros(pair, system, n_u, n_d):
         return True, possible_decompositions
 
 
-# Constructs mass textures corresponding to a given set of field charges
-def construct_texture_from_symmetry(charges, n_u, n_d):
-
-    m_u = np.zeros([3 + n_u, 3 + n_u], dtype='uint8')
-    m_d = np.zeros([3 + n_d, 3 + n_d], dtype='uint8')
-
-    for i in range(2):
-        for j in range(3):
-            for k in range(3 + n_u):
-                if not charges[i] + charges[2 + j] - charges[5 + k]:
-                    m_u[j, k] = i + 1
-
-            for k in range(3 + n_d):
-                if not -charges[i] + charges[2 + j] - charges[8 + n_u + k]:
-                    m_d[j, k] = i + 1
-
-    for i in range(n_u):
-        for j in range(3 + n_u):
-            if not -charges[5 + j] + charges[11 + n_u + n_d + i]:
-                m_u[3 + i, j] = 3
-
-    for i in range(n_d):
-        for j in range(3 + n_d):
-            if not -charges[5 + n_u + j] + charges[11 + 2 * n_u + n_d + i]:
-                m_d[3 + i, j] = 3
-
-    return m_u, m_d
+# def test(pair, elem):
+#
+#     for k in range(2):
+#         for i in range(4):
+#             for j in range(4):
+#                 if (pair[k][i, j] == 0) != (elem[k][i, j] == 0):
+#                     print(k, i, j)
+#                     return False
+#     return True
 
 
 def main():
 
     args = sys.argv[1:]
     filename = args[0]
-    # n_u, n_d, set_mrt = io_mrt.read_mrt_after_min(filename)
-    n_u, n_d, set_mrt = io_mrt.read_mrt_after_min(filename)
+    n_u, n_d, set_mrt = io_mrt.read_mrt_before_min(filename)
     system = define_system_eqs(n_u, n_d)
 
     for textures in set_mrt:

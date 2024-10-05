@@ -263,7 +263,7 @@ def print_mrt_after_symmetry(set_mrt,
             for decomp in mrt_n_zeros_u[2]:
                 for symmetry in decomp:
                     for field_charge in symmetry:
-                        f.write(f"{np.round(field_charge)} ")
+                        f.write(f"{field_charge} ")
                     f.write("\n")
                 f.write("\n")
 

@@ -183,6 +183,10 @@ def write_table_charges(set_mrt_sym, notation_u, notation_d, n_u, n_d, filename)
             for list_charges in n_zeros_u[2]:
                 m_u, m_d = abelian.construct_texture_from_symmetry(
                     list_charges[0], n_u, n_d)
+                # print(m_u)
+                # print(m_d)
+                # print(list_charges[0])
+                # pdb.set_trace()
                 j = notation_u[i][1].index(text.get_index_of_texture(
                     m_u, n_u + 3, notation_u[i][0]))
                 k = notation_d[i][1].index(text.get_index_of_texture(

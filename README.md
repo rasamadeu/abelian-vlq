@@ -85,6 +85,9 @@ Finally, `notation.py` is module which contains functions that translates data f
     - 2 - non-zero entry from Yukawa coupling to the second Higgs doublet
     - 3 - non-zero entry from bare mass term with VLQ
 
+> [!NOTE]
+> The module `abelian_symmetry_2HDM.py` only provides a numerical solution to the field charges. Hence, the charges in the table resulting from `write_table_charges` module may have floating point values. It is the user's responsibility to analyse the results and rewrite them in a more convenient manner.
+
 ## Issues
 
 Currently, the `minimisation.py` script must be manually updated to perform the minimisation step in the procedure pipeline. It would be useful to automate this step.
