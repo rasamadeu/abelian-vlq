@@ -12,7 +12,7 @@ quark mass matrices, the maximally restrictive texture zero pairs (MRT) are dete
 $(M_u, M_d)$ that have the maximal number of zero entries while maintaining compatibility with quark data (CKM and quark mass data).
 
 The proposed mechanism to generate these texture zeros is to impose global Abelian symmetries on the fields.
-The minimal setup for such mechanism consists of a 2HDM. For more details, read the thesis (Thesis.pdf) in the repository.
+The minimal setup for such mechanism consists of a 2HDM. For more details, check the [thesis](Thesis.pdf) in the repository.
 
 To determine the MRT realisable with 2HDM + Abelian symmetries, the following code pipeline was designed:
 
@@ -42,12 +42,12 @@ The project is also dependent on the following open source Python packages, whic
 
 ## Usage
 
-The repository contains a simple bash script that runs the pipeline explained in [Introduction](#Introduction).
+The Python modules are in the **src** directory. The repository contains a simple bash script that runs the pipeline explained in [Introduction](#Introduction).
 To run it, you simply need to type
 
 `./abelian-vlq n_u n_d`
 
-in the terminal, where n_u and n_d are the number of up and down isosinglet VLQs, respectively.
+in the terminal, where n_u and n_d are the number of up and down isosinglet VLQs, respectively. The script results are written in a created folder **output**.
 
 > [!IMPORTANT]
 > Remember to modify minimisation.py to accomodate the case you wish to study, since this step must be manually defined.
@@ -56,10 +56,32 @@ in the terminal, where n_u and n_d are the number of up and down isosinglet VLQs
 
 There are several conditions which you can redefine in the scripts to accomodate your demands: 
 
-- texture_zeros.py
+- `texture_zeros.py`
     - In line 202 there is a block of code where extra compatibility criteria may be defined.
-    There, you find the criteria that at least 1 VLQ must be coupled to the SM quarks. Otherwise, the VLQ would be decoupled and the CKM matrix would remain unitary.
-- minimisation.py
+    There, you find the criteria that at least 1 VLQ must be coupled to the SM quarks. Otherwise, the VLQs would be decoupled and the CKM matrix would remain unitary.
+- `minimisation.py`
+    - There are global constants that control the minimisation parameters:
+        - N_TRIES - specifies how many times the minimisation step is performed on each texture pair before it is ruled out as incompatible with data
+        - MAX_CHI_SQUARE - specifies the allowed $\chi^2$ upper bound for each observable
+        - VLQ_LOWER_BOUND - specifies the allowed lower bound for the VLQs mass
+        - SIGMA_MASS_VLQ - specifies the estimated error associated with VLQ_LOWER_BOUND
+        - FILENAME_OUTPUT - if provided, specifies filename for output
+- `abelian_symmetry_2HDM.py`
+    - There is a single parameter, FILENAME_OUTPUT, which is similar to the previous case.
+
+### Useful scripts
+
+`io_mrt.py` is this project I/O Python module which contains function to I/O data from/to files after each step of the pipeline. It also contains pretty print functions to visualize data in a more readable way.
+
+Finally, `notation.py` is module which contains functions that translates data from each step into tables in Latex format, reducing the workload and human error when transcribing the results to Latex documents. It contains the following functions:
+
+- `write_table_notation`: writes table that automatically associates a label with each mass matrix texture for up and down quarks 
+- `write_table_pairs`: writes a table with all MRT pairs obtained from steps **1** and **2**, using the notation defined in `write_table_notation`
+- `write_table_charges`: writes a table with the field charges for the MRT pairs compatible with 2HDM + Abelian symmetries (end result of the pipeline), and defines a notation for each possible Yukawa matrices decomposition of MRT pair.
+- `write_table_decomp`: writes a table with the Yukawa matrices decomposition corresponding to each field charge set. The non-zero entries are labeled as follows:
+    - 1 - non-zero entry from Yukawa coupling to the first Higgs
+    - 2 - non-zero entry from Yukawa coupling to the second Higgs
+    - 3 - non-zero entry from bare mass term with VLQ
 
 ## Issues
 
