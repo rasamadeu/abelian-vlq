@@ -7,22 +7,26 @@ A Python codebase to explore two Higgs doublets models (2HDMs) extended with iso
 This project was developed during my master's thesis, where I address a recent result in the first row of the Cabibbo-Kobayashi-Maskawa (CKM) matrix which
 presents a deviation from the SM prediction of a unitary CKM. This result is known as the Cabibbo angle anomaly (CAA). 
 
-In the thesis, the CAA is analysed in the context of a SM extension with a single up isosinglet VLQ. To reduce the number of parameters in the 
+The CAA is analysed in the context of a SM extension with a single up isosinglet VLQ. To reduce the number of parameters in the 
 quark mass matrices, the maximally restrictive texture zero pairs (MRT) are determined. Maximally restrictive texture zero pairs are pairs of quark mass matrices
-(M_u, M_d) that have the maximal number of zero entries while maintaining compatibility with quark data (CKM and quark mass data).
+$(M_u, M_d)$ that have the maximal number of zero entries while maintaining compatibility with quark data (CKM and quark mass data).
+
 The proposed mechanism to generate these texture zeros is to impose global Abelian symmetries on the fields.
 The minimal setup for such mechanism consists of a 2HDM. For more details, read the thesis (Thesis.pdf) in the repository.
+
 To determine the MRT realisable with 2HDM + Abelian symmetries, the following code pipeline was designed:
 
-1. Determine the textures with most zero entries which generate non-zero CKM entries, gamma phase and quark masses (texture_zeros.py)
-2. Determine from the previous textures the MRT by running a $\chi^2$ minimisation step to check compatibility with data (minimisation.py)
+1. Determine the textures with most zero entries which generate non-zero CKM entries, $\gamma$ and quark masses (texture_zeros.py)
+2. Determine the MRT by running a $\chi^2$ minimisation step to check if compatibility with data is attained (minimisation.py)
 3. Determine the MRT that are realisable within the minimal 2HDM (abelian_symmetry_2HDM.py)
 
 After concluding the thesis, steps **1** and **3** of the project pipeline were improved to deal with an arbitrary number of up and/or down isosinglet VLQs.
 
 ## Prerequisites
 
-This project is written in **Python**. There is a lot of information on
+This project is written in **Python**.
+
+There is a lot of information on
 how to install the Python interpreter online. In my case, since I'm working with Ubuntu, I installed it via apt by typing in the terminal:
 
 ```
