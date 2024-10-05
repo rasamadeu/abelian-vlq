@@ -8,9 +8,9 @@ This project was developed during my master's thesis, where I address a recent r
 result, known as the Cabibbo angle anomaly (CAA), presents a deviation from the SM prediction of a unitary CKM. 
 
 The CAA is analysed in the context of a SM extension with a single up isosinglet VLQ. To reduce the number of parameters in the 
-quark mass matrices, the maximally restrictive texture zero pairs (MRT) are determined.
+quark mass matrices, the maximally restrictive texture zero pairs (MRT pairs) are determined.
 
-Maximally restrictive texture zero pairs are pairs of quark mass matrices
+MRT pairs are pairs of quark mass matrices
 $(M_u, M_d)$ that have the maximal number of zero entries while maintaining compatibility with quark data (CKM and quark mass data).
 
 The proposed mechanism to generate these texture zeros is to impose global Abelian symmetries on the fields.
